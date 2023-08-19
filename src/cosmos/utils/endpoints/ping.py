@@ -7,7 +7,7 @@ from fastapi import APIRouter, Response, status
 router = APIRouter(prefix="/ping")
 
 
-@router.get("/")
+@router.get("/", include_in_schema=False)
 def ping():
     """Ping path operation.
 

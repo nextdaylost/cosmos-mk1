@@ -1,7 +1,9 @@
 """Application settings and configuration."""
 
 
-from pydantic import AnyHttpUrl
+from typing import Literal
+
+from pydantic import AnyHttpUrl, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -12,6 +14,8 @@ class Settings(BaseSettings):
 
     api_prefix: str = "/api"
     cors_origins: list[AnyHttpUrl] = []
+    env: Literal["dev", "prod"] = "dev"
+    sqlalchemy_uri: PostgresDsn | Literal["sqlite:///cosmos.db"] = "sqlite:///cosmos.db"
 
 
 settings = Settings()
